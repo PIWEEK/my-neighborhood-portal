@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { PlanComponent } from './plan/plan.component';
 import { CouncilComponent } from './council/council.component';
+import { SocialCardComponent } from './social-card/social-card.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CouncilComponent } from './council/council.component';
     HeaderComponent,
     HomeComponent,
     PlanComponent,
-    CouncilComponent
+    CouncilComponent,
+    SocialCardComponent
   ],
   imports: [
     BrowserModule,
