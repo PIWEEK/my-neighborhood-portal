@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { WallItem } from '../data/types';
 
 @Component({
   selector: 'app-social-card',
@@ -7,8 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SocialCardComponent implements OnInit {
 
-  @Input() image: string;
-  @Input() text: string;
+  @Input() item!: WallItem;
 
   constructor() { }
 
