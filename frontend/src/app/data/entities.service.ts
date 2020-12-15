@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SampleData } from './sample-data';
+import { HttpClient } from '@angular/common/http';
+import { Observable, ReplaySubject } from 'rxjs';
+import { share, map } from 'rxjs/operators';
 import { Entity, SocialNetwork, SocialPost, WallItem } from './types';
 
 @Injectable({
@@ -7,14 +9,28 @@ import { Entity, SocialNetwork, SocialPost, WallItem } from './types';
 })
 export class EntitiesService {
 
-  constructor() { }
+  public mainWall$ = new ReplaySubject<WallItem[]>(1);
+  private allEntities$: Observable<Entity[]>;
 
-  public mainWall(): WallItem[] {
+  constructor(
+    private http: HttpClient,
+  ) {
+    this.allEntities$ = this.http.get<Entity[]>("/api/entities/")
+      .pipe(share());
+
+    this.allEntities$.pipe(
+      map((entities) => this.buildMainWall(entities))
+    ).subscribe((mainWall) => {
+      this.mainWall$.next(mainWall);
+    });
+  }
+
+  private buildMainWall(entities: Entity[]): WallItem[] {
     const wall: WallItem[] = [];
 
     const buffer = [];
-    for (let entity of SampleData) {
-      const network = entity.socialNetworks.find((n) => n.isDefault);
+    for (let entity of entities) {
+      const network = entity.networks.find((n) => n.isDefault);
       if (network) {
         const iterator = network.posts[Symbol.iterator]();
         buffer.push({

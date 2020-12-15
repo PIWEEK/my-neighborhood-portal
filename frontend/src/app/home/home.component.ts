@@ -13,13 +13,15 @@ export class HomeComponent implements OnInit {
   constructor(private entities: EntitiesService) { }
 
   ngOnInit(): void {
-    const mainWall = this.entities.mainWall();
-
-    let column = 0;
-    for (let item of mainWall) {
-      this.columns[column].push(item);
-      column = (column + 1) % 3;
-    }
+    this.entities.mainWall$.subscribe(
+      (mainWall) => {
+        let column = 0;
+        for (let item of mainWall) {
+          this.columns[column].push(item);
+          column = (column + 1) % 3;
+        }
+      }
+    );
   }
 
 }

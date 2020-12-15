@@ -15,4 +15,15 @@ export class SocialCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public typeIcon(): string {
+    if (this.item) {
+      if (this.item.network.networkType === "facebook") {
+        return "/assets/img/network-facebook.png";
+      }
+      if (this.item.network.networkType === "blog") {
+        return "/assets/img/network-rss.png";
+      }
+    }
+    return "";
+  }
 }

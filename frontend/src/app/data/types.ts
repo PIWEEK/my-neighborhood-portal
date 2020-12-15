@@ -3,7 +3,7 @@ export interface Entity {
   imageUrl: string;
   description: string;
   email: string;
-  socialNetworks: SocialNetwork[];
+  networks: SocialNetwork[];
 }
 
 export type NetworkType = 'blog' | 'twitter' | 'facebook' | 'instagram';

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DataModule } from './data/data.module';
@@ -10,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { PlanComponent } from './plan/plan.component';
 import { CouncilComponent } from './council/council.component';
 import { SocialCardComponent } from './social-card/social-card.component';
+import { StripHtmlPipe } from './strip-html.pipe';
 
 import localeEs from '@angular/common/locales/es';
 registerLocaleData(localeEs, 'es');
@@ -21,10 +23,12 @@ registerLocaleData(localeEs, 'es');
     HomeComponent,
     PlanComponent,
     CouncilComponent,
-    SocialCardComponent
+    SocialCardComponent,
+    StripHtmlPipe
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     DataModule
   ],
