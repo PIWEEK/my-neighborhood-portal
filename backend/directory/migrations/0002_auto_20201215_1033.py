@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField()),
                 ('imageUrl', models.URLField()),
                 ('text', models.TextField()),
-                ('entity', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='entities.socialnetwork')),
+                ('entity', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='directory.socialnetwork')),
             ],
             options={
                 'verbose_name': 'social post',
@@ -47,6 +47,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='socialnetwork',
             name='entity',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='entities.entity'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='directory.entity'),
         ),
     ]

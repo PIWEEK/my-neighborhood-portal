@@ -7,7 +7,9 @@ class Entity(models.Model):
     email = models.EmailField()
 
     class Meta:
+        verbose_name = "entity"
         verbose_name_plural = "entities"
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -21,11 +23,15 @@ class SocialNetwork(models.Model):
       FACEBOOK = 'facebook', 'Facebook'
       INSTAGRAM = 'instagram', 'Instagram'
 
-    entity = models.ForeignKey(Entity, on_delete=models.CASCADE)
+    entity = models.ForeignKey(
+        Entity,
+        on_delete=models.CASCADE,
+        related_name='networks',
+    )
     isDefault = models.BooleanField()
     networkType = models.CharField(
         max_length=50,
-        choices=NetworkTypes.choices
+        choices=NetworkTypes.choices,
     )
     url = models.URLField()
     iconUrl = models.URLField()
@@ -33,13 +39,18 @@ class SocialNetwork(models.Model):
     class Meta:
         verbose_name = "social network"
         verbose_name_plural = "social networks"
+        ordering = ["entity_id", "networkType", "id"]
 
     def __str__(self):
         return '%s - %s [%d]' % (self.entity.name, self.networkType, self.id)
 
 
 class SocialPost(models.Model):
-    entity = models.ForeignKey(SocialNetwork, on_delete=models.CASCADE)
+    network = models.ForeignKey(
+        SocialNetwork,
+        on_delete=models.CASCADE,
+        related_name='posts',
+    )
     url = models.URLField()
     date = models.DateTimeField()
     imageUrl = models.URLField()
@@ -48,7 +59,8 @@ class SocialPost(models.Model):
     class Meta:
         verbose_name = "social post"
         verbose_name_plural = "social posts"
+        ordering = ["network_id", "date"]
 
     def __str__(self):
-        return '%s - %s [%s]' % (self.entity.name, self.networkType, self.date)
+        return '%s - %s [%s]' % (self.network.entity.name, self.network.networkType, self.date)
 
