@@ -28,21 +28,21 @@ class SocialNetwork(models.Model):
         on_delete=models.CASCADE,
         related_name='networks',
     )
-    isDefault = models.BooleanField()
-    networkType = models.CharField(
+    is_default = models.BooleanField()
+    network_type = models.CharField(
         max_length=50,
         choices=NetworkTypes.choices,
     )
     url = models.URLField()
-    iconUrl = models.URLField()
+    icon_url = models.URLField()
 
     class Meta:
         verbose_name = "social network"
         verbose_name_plural = "social networks"
-        ordering = ["entity_id", "networkType", "id"]
+        ordering = ["entity_id", "network_type", "id"]
 
     def __str__(self):
-        return '%s - %s [%d]' % (self.entity.name, self.networkType, self.id)
+        return '%s - %s [%d]' % (self.entity.name, self.network_type, self.id)
 
 
 class SocialPost(models.Model):
@@ -53,7 +53,7 @@ class SocialPost(models.Model):
     )
     url = models.URLField()
     date = models.DateTimeField()
-    imageUrl = models.URLField()
+    image_url = models.URLField()
     text = models.TextField()
 
     class Meta:
@@ -62,5 +62,5 @@ class SocialPost(models.Model):
         ordering = ["network_id", "date"]
 
     def __str__(self):
-        return '%s - %s [%s]' % (self.network.entity.name, self.network.networkType, self.date)
+        return '%s - %s [%s]' % (self.network.entity.name, self.network.network_type, self.date)
 
