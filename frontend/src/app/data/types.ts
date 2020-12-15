@@ -28,3 +28,4 @@ export interface WallItem {
   network: SocialNetwork;
   post: SocialPost;
 }
+
