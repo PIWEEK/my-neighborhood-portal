@@ -5,10 +5,24 @@ class Entity(models.Model):
     image_url = models.URLField()
     description = models.TextField()
     email = models.EmailField()
+    categories = models.ManyToManyField("category")
 
     class Meta:
         verbose_name = "entity"
         verbose_name_plural = "entities"
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    slug = models.SlugField()
+    name = models.CharField(unique=True, max_length=50)
+
+    class Meta:
+        verbose_name = "category"
+        verbose_name_plural = "categories"
         ordering = ["name"]
 
     def __str__(self):

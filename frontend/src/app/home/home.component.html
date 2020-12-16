@@ -54,9 +54,15 @@
         <li class="collection-item avatar"
           *ngFor="let entity of entities.allEntities$ | async">
           <img src="{{ entity.imageUrl }}" alt="" class="circle">
-          <span class="title">{{ entity.name }}</span>
+          <div class="title">
+            {{ entity.name }}
+            <span class="badge"
+              *ngFor="let category of entity.categories">
+              {{ category.name }}
+            </span>
+          </div>
           <p>{{ entity.description }}</p>
-          <div class="secondary-content">
+          <div class="secondary-content favorite">
             <a href="#!"><i class="material-icons">grade</i></a>
           </div>
         </li>

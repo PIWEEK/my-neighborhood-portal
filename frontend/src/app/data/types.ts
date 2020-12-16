@@ -4,6 +4,12 @@ export interface Entity {
   description: string;
   email: string;
   networks: SocialNetwork[];
+  categories: Category[];
+}
+
+export interface Category {
+  slug: string;
+  name: string;
 }
 
 export type NetworkType = 'blog' | 'twitter' | 'facebook' | 'instagram';

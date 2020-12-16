@@ -27,9 +27,14 @@
 .collection-item {
   .title {
     font-weight: bold;
+    margin-right: 2rem;
   }
 
   p {
     margin-right: 2rem;
+  }
+
+  .favorite {
+    top: 9px;
   }
 }
