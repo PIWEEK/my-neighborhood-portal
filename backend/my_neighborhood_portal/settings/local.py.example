@@ -46,3 +46,8 @@ USE_TZ = True
 
 TWITTER_BEARER_TOKEN = "<your token>"
 
+
+# Facebook API
+
+FACEBOOK_ACCESS_TOKEN = "<your token>"
+
