@@ -16,6 +16,8 @@ class Command(BaseCommand):
                 self._update_posts(entity, network)
 
     def _update_posts(self, entity, network):
+        print("%s - %s" % (entity.name, network.network_type))
+
         posts = []
 
         if network.network_type == "blog":
