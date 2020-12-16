@@ -3,6 +3,9 @@
 # local databases
 /**/db.sqlite3
 
+# local settings
+/**/settings/local.py
+
 # compiled output
 /**/dist
 /**/tmp

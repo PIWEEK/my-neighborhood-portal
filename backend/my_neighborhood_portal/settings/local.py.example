@@ -1,0 +1,48 @@
+from .common import *
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+
+
+# Generate a new secret key by opening a python shell and writing
+#   from django.core.management import utils
+#   print(utils.get_random_secret_key())
+#
+# SECURITY WARNING: keep it secret and don't commit it in version control!
+SECRET_KEY = '<your secret key>'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
+
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/3.1/topics/i18n/
+
+LANGUAGE_CODE = 'en_US'
+
+TIME_ZONE = 'GMT'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+
+# Twitter API
+
+TWITTER_BEARER_TOKEN = "<your token>"
+

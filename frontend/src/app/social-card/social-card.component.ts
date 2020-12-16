@@ -20,6 +20,9 @@ export class SocialCardComponent implements OnInit {
       if (this.item.network.networkType === "facebook") {
         return "/assets/img/network-facebook.png";
       }
+      if (this.item.network.networkType === "twitter") {
+        return "/assets/img/network-twitter.png";
+      }
       if (this.item.network.networkType === "blog") {
         return "/assets/img/network-rss.png";
       }

@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 feedparser = "*"
 djangorestframework-camel-case = "*"
+requests = "*"
 
 [dev-packages]
 
