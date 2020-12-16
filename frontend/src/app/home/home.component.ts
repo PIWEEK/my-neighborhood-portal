@@ -9,6 +9,7 @@ import { WallItem } from '../data/types';
 })
 export class HomeComponent implements OnInit {
   public columns: WallItem[][] = [[], [], []];
+  public currentTab = 1;
 
   constructor(private entities: EntitiesService) { }
 
@@ -22,6 +23,10 @@ export class HomeComponent implements OnInit {
         }
       }
     );
+  }
+
+  public setTab(tab: number) {
+    this.currentTab = tab;
   }
 
 }

@@ -1,9 +1,35 @@
+.container {
+  position: relative;
+}
+
 .filter-status {
-  padding: 1rem 1rem 0 1rem;
+  margin-top: 0.25rem;
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 
   filter-summary {
     margin-left: 1rem;
+  }
+}
+
+.tabs {
+  margin-top: 0.5rem;
+
+  .active {
+    font-weight: bold;
+  }
+}
+
+.collection-item {
+  .title {
+    font-weight: bold;
+  }
+
+  p {
+    margin-right: 2rem;
   }
 }

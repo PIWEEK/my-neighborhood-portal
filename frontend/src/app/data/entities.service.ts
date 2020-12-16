@@ -9,8 +9,8 @@ import { Entity, SocialNetwork, SocialPost, WallItem } from './types';
 })
 export class EntitiesService {
 
+  public allEntities$: Observable<Entity[]>;
   public mainWall$ = new ReplaySubject<WallItem[]>(1);
-  private allEntities$: Observable<Entity[]>;
 
   constructor(
     private http: HttpClient,
