@@ -14,6 +14,7 @@ import { SocialCardComponent } from './social-card/social-card.component';
 import { StripHtmlPipe } from './strip-html.pipe';
 
 import localeEs from '@angular/common/locales/es';
+import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -24,7 +25,8 @@ registerLocaleData(localeEs, 'es');
     PlanComponent,
     CouncilComponent,
     SocialCardComponent,
-    StripHtmlPipe
+    StripHtmlPipe,
+    FilterPanelComponent
   ],
   imports: [
     BrowserModule,

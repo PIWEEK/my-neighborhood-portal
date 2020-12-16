@@ -1,0 +1,15 @@
+<div class="card-panel indigo lighten-3">
+  <a *ngFor="let category of entities.allCategories$ | async"
+     [class]="buttonClass(category)"
+     (click)="toggleCategory(category)">
+    {{ category.name }}
+  </a>
+  <div class="extra-buttons">
+    <a href="#" (click)="deselectAllCategories()">
+      <i class="material-icons">cancel</i>
+    </a>
+    <a href="#" (click)="selectAllCategories()">
+      <i class="material-icons">check_circle</i>
+    </a>
+  </div>
+</div>

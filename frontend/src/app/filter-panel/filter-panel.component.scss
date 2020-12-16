@@ -1,0 +1,17 @@
+.card-panel {
+  position: relative;
+}
+
+.btn {
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.btn-flat {
+  margin: 0 calc(0.5rem + 4px) 0.5rem 0;
+}
+
+.extra-buttons {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}

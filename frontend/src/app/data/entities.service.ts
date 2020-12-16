@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject } from 'rxjs';
-import { share, map } from 'rxjs/operators';
-import { Entity, SocialNetwork, SocialPost, WallItem } from './types';
+import { share, map, combineLatest } from 'rxjs/operators';
+import { Entity, Category, SocialNetwork, SocialPost, WallItem } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,11 @@ import { Entity, SocialNetwork, SocialPost, WallItem } from './types';
 export class EntitiesService {
 
   public allEntities$: Observable<Entity[]>;
+  public selectedEntities$ = new ReplaySubject<Entity[]>(1);
+  public allCategories$ = new ReplaySubject<Category[]>(1);
   public mainWall$ = new ReplaySubject<WallItem[]>(1);
+
+  private currentCategories: Category[] = [];
 
   constructor(
     private http: HttpClient,
@@ -18,11 +22,59 @@ export class EntitiesService {
     this.allEntities$ = this.http.get<Entity[]>("/api/entities/")
       .pipe(share());
 
+    this.http.get<Category[]>("/api/categories/")
+      .subscribe((categories) => {
+        this.currentCategories = this.initializeCategories(categories);
+        this.allCategories$.next(this.currentCategories);
+      });
+
     this.allEntities$.pipe(
+      combineLatest(this.allCategories$),
+      map(([entities, categories]) => this.filterEntities(entities, categories))
+    ).subscribe((entities) => {
+      this.selectedEntities$.next(entities);
+    });
+
+    this.selectedEntities$.pipe(
       map((entities) => this.buildMainWall(entities))
     ).subscribe((mainWall) => {
       this.mainWall$.next(mainWall);
     });
+  }
+
+  public toggleCategory(slug: string) {
+    for (let category of this.currentCategories) {
+      if (category.slug === slug) {
+        category.selected = !category.selected;
+        this.allCategories$.next(this.currentCategories);
+        break;
+      }
+    }
+  }
+
+  public selectAllCategories() {
+    for (let category of this.currentCategories) {
+      category.selected = true;
+    }
+    this.allCategories$.next(this.currentCategories);
+  }
+
+  public deselectAllCategories() {
+    for (let category of this.currentCategories) {
+      category.selected = false;
+    }
+    this.allCategories$.next(this.currentCategories);
+  }
+
+  private initializeCategories(categories: Category[]): Category[] {
+    for (let category of categories) {
+      category.selected = true;
+    }
+    return categories;
+  }
+
+  private filterEntities(entities: Entity[], categories: Category[]): Entity[] {
+    return entities.filter((entity) => this.isEntitySelected(entity, categories));
   }
 
   private buildMainWall(entities: Entity[]): WallItem[] {
@@ -58,5 +110,16 @@ export class EntitiesService {
     }
 
     return wall;
+  }
+
+  private isEntitySelected(entity: Entity, categories: Category[]): boolean {
+    for (let cat1 of entity.categories) {
+      for (let cat2 of categories) {
+        if ((cat1.slug === cat2.slug) && cat2.selected) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

@@ -10,6 +10,7 @@ export interface Entity {
 export interface Category {
   slug: string;
   name: string;
+  selected?: boolean;
 }
 
 export type NetworkType = 'blog' | 'twitter' | 'facebook' | 'instagram';

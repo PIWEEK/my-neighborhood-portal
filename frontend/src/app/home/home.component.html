@@ -4,7 +4,7 @@
     <div class="filter-summary">
       Viendo: Todas las categorías
     </div>
-    <a class="btn-flat">
+    <a class="btn-flat" (click)="toggleFilter()">
       <i class="material-icons">tune</i>
     </a>
   </div>
@@ -26,6 +26,9 @@
         href="#test1">Mapa</a>
     </li>
   </ul>
+
+  <app-filter-panel *ngIf="filterOpen">
+  </app-filter-panel>
 
   <div class="row" *ngIf="currentTab === 1">
     <div class="col s4">
@@ -52,7 +55,7 @@
     <div class="col s8 offset-s2">
       <ul class="collection">
         <li class="collection-item avatar"
-          *ngFor="let entity of entities.allEntities$ | async">
+          *ngFor="let entity of entities.selectedEntities$ | async">
           <img src="{{ entity.imageUrl }}" alt="" class="circle">
           <div class="title">
             {{ entity.name }}
