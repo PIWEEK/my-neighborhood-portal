@@ -36,6 +36,16 @@ class SocialNetwork(models.Model):
     url = models.URLField()
     icon_url = models.URLField()
 
+    feed_url = models.URLField(
+        blank=True,
+        help_text="for blogs, give the RSS/Atom feed url",
+    )
+    account_name = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="For Twitter/Facebook/Instagram, give the @AccountName",
+    )
+
     class Meta:
         verbose_name = "social network"
         verbose_name_plural = "social networks"

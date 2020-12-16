@@ -15,7 +15,7 @@
     <img class="type-icon" src="{{ typeIcon() }}" />
   </div>
 
-  <div class="card-image">
+  <div class="card-image" *ngIf="item.post.imageUrl">
     <a href="{{ item.post.url }}" target="_blank">
       <img src="{{ item.post.imageUrl }}">
     </a>

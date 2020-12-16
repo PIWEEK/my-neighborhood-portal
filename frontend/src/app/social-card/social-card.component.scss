@@ -3,12 +3,10 @@
   display: flex;
 
   .network-icon {
-    width: 40px;
     height: 40px;
   }
 
   .type-icon {
-    width: 30px;
     height: 30px;
     margin-left: auto;
   }
@@ -22,6 +20,7 @@
   .collective-name {
     font-size: 1rem;
     font-weight: bold;
+    margin-right: 0.5rem;
   }
 
   .post-date {

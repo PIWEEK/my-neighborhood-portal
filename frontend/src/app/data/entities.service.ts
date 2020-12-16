@@ -41,7 +41,9 @@ export class EntitiesService {
       }
     }
 
-    while (buffer.length > 0) {
+    let counter = 0;
+    while (buffer.length > 0 && counter < 21) {
+      counter += 1;
       const index = Math.floor(Math.random() * buffer.length);
       const post = buffer[index].posts.next();
       if (post.done) {

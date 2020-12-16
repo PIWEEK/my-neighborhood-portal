@@ -26,7 +26,7 @@ class Command(BaseCommand):
             posts = self._read_facebook_wall(network)
 
     def _read_atom_feed(self, network):
-        result = feedparser.parse(network.url + "/feeds/posts/default")
+        result = feedparser.parse(network.feed_url)
 
         SocialPost.objects.filter(network=network).delete()
 
@@ -46,10 +46,9 @@ class Command(BaseCommand):
             print(post)
 
     def _read_twitter_timeline(self, network):
-        user_id = network.url[len("https://twitter.com/"):]
         api_url = "https://api.twitter.com/2/tweets/search/recent"
         params = {
-            "query": "from:%s" % user_id,
+            "query": "from:%s" % network.account_name,
             "tweet.fields": "attachments,created_at",
             "media.fields": "preview_image_url,url",
             "expansions": "attachments.media_keys",
@@ -73,7 +72,7 @@ class Command(BaseCommand):
 
             post = SocialPost.objects.create(
                 network = network,
-                url = "https://twitter.com/%s/status/%s" % (user_id, tweet["id"]),
+                url = "https://twitter.com/%s/status/%s" % (network.account_name, tweet["id"]),
                 date = _twitter_date_to_datetime(tweet["created_at"]),
                 image_url = image["url"] if image else "",
                 text = tweet.get("text", ""),
@@ -81,8 +80,7 @@ class Command(BaseCommand):
             print(post)
 
     def _read_facebook_wall(self, network):
-        user_id = network.url[len("https://www.facebook.com/"):]
-        api_url = "https://graph.facebook.com/%s/feed" % user_id
+        api_url = "https://graph.facebook.com/%s/feed" % network.account_name
         params = {
             "access_token": settings.FACEBOOK_ACCESS_TOKEN,
             "fields": "permalink_url,created_time,message,full_picture",
