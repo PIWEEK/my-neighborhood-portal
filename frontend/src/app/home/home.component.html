@@ -1,8 +1,9 @@
 <app-header></app-header>
 <div class="container">
   <div class="filter-status">
-    <div class="filter-summary">
-      Viendo: Todas las categorías
+    <div class="filter-summary"
+      *ngIf="filterLabel$">
+      Viendo: {{ filterLabel$ | async }}
     </div>
     <a class="btn-flat" (click)="toggleFilter()">
       <i class="material-icons">tune</i>
@@ -49,13 +50,23 @@
         [item]=item>
       </app-social-card>
     </div>
+    <div class="col 12"
+      *ngIf="(columns[0].length === 0) &&
+             (columns[1].length === 0) &&
+             (columns[2].length === 0)">
+      <p>No tenemos noticias que correspondan a estos filtros</p>
+    </div>
   </div>
 
   <div class="row" *ngIf="currentTab === 2">
-    <div class="col s8 offset-s2">
-      <ul class="collection">
+    <div class="col s8 offset-s2"
+      *alias="entities.selectedEntities$ | async as selectedEntities">
+      <!-- See https://github.com/angular/angular/issues/15280
+           and https://www.npmjs.com/package/ngx-alias -->
+      <ul class="collection"
+          *ngIf="selectedEntities.length > 0">
         <li class="collection-item avatar"
-          *ngFor="let entity of entities.selectedEntities$ | async">
+          *ngFor="let entity of selectedEntities">
           <img src="{{ entity.imageUrl }}" alt="" class="circle">
           <div class="title">
             {{ entity.name }}
@@ -70,6 +81,9 @@
           </div>
         </li>
       </ul>
+      <p *ngIf="selectedEntities.length === 0">
+        No tenemos entidades que correspondan a estos filtros
+      </p>
     </div>
   </div>
 

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxAliasModule } from 'ngx-alias';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DataModule } from './data/data.module';
@@ -32,7 +33,8 @@ registerLocaleData(localeEs, 'es');
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    DataModule
+    DataModule,
+    NgxAliasModule,
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'es' } ],
   bootstrap: [AppComponent]
