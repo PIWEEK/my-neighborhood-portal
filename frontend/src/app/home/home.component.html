@@ -12,23 +12,35 @@
 
   <ul class="tabs">
     <li class="tab col s3">
-      <a [class.active]="currentTab === 1"
-        (click)="setTab(1)">Muro</a>
+      <a routerLink="/inicio/muro"
+         routerLinkActive="active">
+        Muro
+      </a>
     </li>
     <li class="tab col s3">
-      <a [class.active]="currentTab === 2"
-        (click)="setTab(2)">Lista</a>
+      <a routerLink="/inicio/lista"
+         routerLinkActive="active">
+        Lista
+      </a>
     </li>
     <li class="tab col s3">
-      <a [class.active]="currentTab === 3"
-        (click)="setTab(3)">Mapa</a>
+      <a routerLink="/inicio/calendario"
+         routerLinkActive="active">
+        Calendario
+      </a>
+    </li>
+    <li class="tab col s3">
+      <a routerLink="/inicio/mapa"
+         routerLinkActive="active">
+        Mapa
+      </a>
     </li>
   </ul>
 
   <app-filter-panel *ngIf="filterOpen">
   </app-filter-panel>
 
-  <div class="row" *ngIf="currentTab === 1">
+  <div class="row" *ngIf="activeTab === 'wall'">
     <div class="col s12 m6 l4">
       <app-social-card
         *ngFor="let item of columns[0]"
@@ -55,7 +67,7 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="currentTab === 2">
+  <div class="row" *ngIf="activeTab === 'list'">
     <div class="col s12 l10 offset-l1"
       *alias="entities.selectedEntities$ | async as selectedEntities">
       <!-- See https://github.com/angular/angular/issues/15280
@@ -84,7 +96,14 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="currentTab === 3">
+  <div class="row" *ngIf="activeTab === 'calendar'">
+    <iframe frameborder="0" height="600" scrolling="no"
+      src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;showPrint=0&amp;showTitle=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=hammo.org_81lljq1lu6qocq8mlsp2eddv9o%40group.calendar.google.com&amp;color=%236B3304&amp;ctz=Europe%2FMadrid"
+      style="border-width: 0;" width="100%">
+    </iframe>
+  </div>
+
+  <div class="row" *ngIf="activeTab === 'map'">
     <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1dlXsMgTGktO12WMxnHpov0FNR4zmLRvV"
       width="100%" height="800">
     </iframe>

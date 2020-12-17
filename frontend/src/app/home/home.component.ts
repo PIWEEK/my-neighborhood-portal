@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EntitiesService } from '../data/entities.service';
@@ -11,13 +12,19 @@ import { WallItem } from '../data/types';
 })
 export class HomeComponent implements OnInit {
   public columns: WallItem[][] = [[], [], []];
-  public currentTab = 1;
+  public activeTab?: string;
   public filterOpen = false;
   public filterLabel$?: Observable<string>;
 
-  constructor(public entities: EntitiesService) { }
+  constructor(
+    public entities: EntitiesService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe((data) => {
+      this.activeTab = data.activeTab;
+    });
     this.entities.mainWall$.subscribe(
       (mainWall) => {
         let column = 0;
@@ -44,10 +51,6 @@ export class HomeComponent implements OnInit {
         }
       })
     );
-  }
-
-  public setTab(tab: number) {
-    this.currentTab = tab;
   }
 
   public toggleFilter() {
