@@ -1,19 +1,24 @@
+@import "../../styles/styles";
+
 .container {
   position: relative;
 }
 
 .filter-status {
-  margin-top: 0.25rem;
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  max-width: 60%;
+  margin-top: 0.5rem;
+  float: right;
+}
 
-  filter-summary {
-    margin-left: 1rem;
+@media(min-width: #{$medium-screen-up}) {
+  .filter-status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    max-width: 60%;
+    margin-top: 0.25rem;
   }
 }
 

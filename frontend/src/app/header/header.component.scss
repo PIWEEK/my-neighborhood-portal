@@ -3,6 +3,19 @@
   background-size: cover;
   background-color: gray;
   background-blend-mode: multiply;
-  height: 15rem;
+}
+
+.nav-content {
+  padding-bottom: 2rem;
+}
+
+.sidenav-overlay.visible {
+  display: block;
+  opacity: 1;
+}
+
+.sidenav.visible {
+  transform: translateX(0);
+  transition: transform 0.5s;
 }
 

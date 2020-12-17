@@ -1,8 +1,13 @@
 <nav class="nav-extended main-background">
 
   <div class="nav-wrapper container">
+    <a class="sidenav-trigger"
+      (click)="openMenu()">
+      <i class="material-icons">menu</i>
+    </a>
     <ul class="right hide-on-med-and-down">
-      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
         <a routerLink="/">Inicio</a>
       </li>
       <li routerLinkActive="active">
@@ -14,8 +19,27 @@
     </ul>
   </div>
 
-  <div class="nav-header center">
+  <div class="nav-content center">
     <h2>Espartales y Ciudad 10</h2>
     <h5>El portal del Barrio</h5>
   </div>
 </nav>
+
+<div class="sidenav-overlay"
+  [class.visible]="isMenuOpen"
+  (click)="closeMenu()">
+</div>
+
+<ul class="sidenav"
+  [class.visible]="isMenuOpen">
+  <li routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+    <a routerLink="/">Inicio</a>
+  </li>
+  <li routerLinkActive="active">
+    <a routerLink="/plan">El Plan</a>
+  </li>
+  <li routerLinkActive="active">
+    <a routerLink="/consejo">Consejo</a>
+  </li>
+</ul>
