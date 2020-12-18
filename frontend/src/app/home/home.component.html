@@ -73,7 +73,7 @@
       <!-- See https://github.com/angular/angular/issues/15280
            and https://www.npmjs.com/package/ngx-alias -->
       <ul class="collection"
-          *ngIf="selectedEntities.length > 0">
+          *ngIf="selectedEntities && selectedEntities.length > 0">
         <li class="collection-item avatar"
           *ngFor="let entity of selectedEntities">
           <img src="{{ entity.imageUrl }}" alt="" class="circle">
@@ -92,7 +92,7 @@
           </div>
         </li>
       </ul>
-      <p *ngIf="selectedEntities.length === 0">
+      <p *ngIf="!selectedEntities || selectedEntities.length === 0">
         No tenemos entidades que correspondan a estos filtros
       </p>
     </div>

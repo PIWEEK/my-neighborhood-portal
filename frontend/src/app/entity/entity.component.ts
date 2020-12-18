@@ -29,7 +29,7 @@ export class EntityComponent implements OnInit {
 
       this.entity$.subscribe((entity) => {
         if (entity) {
-          if (entity.networks) {
+          if (entity.networks && entity.networks.length > 0) {
             this.currentNetwork$.next(entity.networks[0]);
           }
         }
