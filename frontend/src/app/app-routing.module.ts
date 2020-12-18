@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { EntityComponent } from './entity/entity.component';
 import { PlanComponent } from './plan/plan.component';
 import { CouncilComponent } from './council/council.component';
 
@@ -39,6 +40,10 @@ const routes: Routes = [
         data: {activeTab: "map"},
       },
     ],
+  },
+  {
+    path: "ficha/:id",
+    component: EntityComponent
   },
   {
     path: "plan",

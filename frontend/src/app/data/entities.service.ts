@@ -66,6 +66,40 @@ export class EntitiesService {
     this.allCategories$.next(this.currentCategories);
   }
 
+  public getEntity$(id: string): Observable<Entity | undefined> {
+    return this.allEntities$.pipe(
+      map((entities) => {
+        return entities.find((entity) => String(entity.id) === id);
+      })
+    );
+  }
+
+  public networkTypeIcon(network: SocialNetwork): string {
+    if (network.networkType === "facebook") {
+      return "/assets/img/network-facebook.png";
+    }
+    if (network.networkType === "twitter") {
+      return "/assets/img/network-twitter.png";
+    }
+    if (network.networkType === "instagram") {
+      return "/assets/img/network-instagram.png";
+    }
+    if (network.networkType === "blog") {
+      return "/assets/img/network-rss.png";
+    }
+    return "";
+  }
+
+  public singleWall(entity: Entity, network: SocialNetwork): WallItem[] {
+    return network.posts.map((post) => (
+      {
+        entity: entity,
+        network: network,
+        post: post,
+      }
+    ));
+  }
+
   private initializeCategories(categories: Category[]): Category[] {
     for (let category of categories) {
       category.selected = true;

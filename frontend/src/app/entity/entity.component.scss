@@ -1,0 +1,61 @@
+@import "../../styles/styles";
+
+.back-btn {
+  float: right;
+  cursor: pointer;
+}
+
+.badge-block {
+  margin-bottom: 4rem;
+}
+
+.info-block {
+  margin-bottom: 2rem;
+}
+
+.wall-block {
+  margin-top: 1.5rem;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+
+  i {
+    margin-right: 1rem;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  span:hover {
+    text-decoration: underline;
+  }
+}
+
+.type-icon {
+  height: 30px;
+}
+
+.tabs-icon {
+  display: flex;
+}
+
+.tab-icon a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($primary-color, 30%);
+  }
+
+  &.active {
+    background-color: $primary-color-light;
+  }
+}

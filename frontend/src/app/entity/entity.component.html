@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="container"
+  *ngIf="entity$ | async as entity">
+
+  <a class="back-btn btn-flat"
+    (click)="goBack()">
+    &lt;&lt; Volver
+  </a>
+
+  <h3>{{ entity.name }}</h3>
+
+  <div class="row">
+
+    <div class="col s12 m6 info-block">
+      <img class="responsive-img" src="{{ entity.imageUrl }}" alt="" />
+      <p>{{ entity.description }}</p>
+      <div class="badge-block">
+        <span class="badge"
+          *ngFor="let category of entity.categories">
+          {{ category.name }}
+        </span>
+      </div>
+      <div class="contact-block">
+        <a
+          class="contact"
+          href="mailto:{{ entity.email }}"
+          target="_blank">
+          <i class="material-icons">email</i>
+          <span>{{ entity.email }}</span>
+        </a>
+        <a
+          class="contact"
+          href="{{ entity.web }}"
+          target="_blank">
+          <i class="material-icons">public</i>
+          <span>{{ entity.web }}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="col s12 m5 offset-m1 wall-block"
+      *ngIf="currentNetwork$ | async as currentNetwork">
+      <ul class="tabs-icon">
+        <li class="tab-icon"
+          *ngFor="let network of entity.networks">
+          <a (click)="changeNetwork(network)"
+            [class.active]="network === currentNetwork">
+            <img class="type-icon" src="{{ typeIcon(network) }}" />
+          </a>
+        </li>
+      </ul>
+      <div class="contact-block">
+        <a class="contact"
+           href="{{ currentNetwork.url }}"
+           target="_blank">
+          <span>{{ currentNetwork.url }}</span>
+        </a>
+      </div>
+      <div class="wall-block"
+        *ngIf="currentWall$ | async as currentWall">
+        <app-social-card
+          *ngFor="let item of currentWall"
+          [item]=item>
+        </app-social-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+

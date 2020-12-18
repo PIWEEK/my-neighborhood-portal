@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { EntitiesService } from '../data/entities.service';
 import { WallItem } from '../data/types';
 
 @Component({
@@ -10,22 +11,14 @@ export class SocialCardComponent implements OnInit {
 
   @Input() item!: WallItem;
 
-  constructor() { }
+  constructor(public entities: EntitiesService) { }
 
   ngOnInit(): void {
   }
 
   public typeIcon(): string {
     if (this.item) {
-      if (this.item.network.networkType === "facebook") {
-        return "/assets/img/network-facebook.png";
-      }
-      if (this.item.network.networkType === "twitter") {
-        return "/assets/img/network-twitter.png";
-      }
-      if (this.item.network.networkType === "blog") {
-        return "/assets/img/network-rss.png";
-      }
+      return this.entities.networkTypeIcon(this.item.network);
     }
     return "";
   }

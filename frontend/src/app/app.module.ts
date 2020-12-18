@@ -9,13 +9,14 @@ import { DataModule } from './data/data.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { FilterPanelComponent } from './filter-panel/filter-panel.component';
+import { EntityComponent } from './entity/entity.component';
 import { PlanComponent } from './plan/plan.component';
 import { CouncilComponent } from './council/council.component';
 import { SocialCardComponent } from './social-card/social-card.component';
 import { StripHtmlPipe } from './strip-html.pipe';
 
 import localeEs from '@angular/common/locales/es';
-import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -27,7 +28,8 @@ registerLocaleData(localeEs, 'es');
     CouncilComponent,
     SocialCardComponent,
     StripHtmlPipe,
-    FilterPanelComponent
+    FilterPanelComponent,
+    EntityComponent
   ],
   imports: [
     BrowserModule,

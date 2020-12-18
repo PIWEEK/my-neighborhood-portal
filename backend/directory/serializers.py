@@ -5,7 +5,7 @@ from .models import Entity, Category, SocialNetwork, SocialPost
 class SocialPostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SocialPost
-        fields = ['url', 'network', 'url', 'date', 'image_url', 'text']
+        fields = ['id', 'url', 'network', 'url', 'date', 'image_url', 'text']
 
 
 class SocialNetworkSerializer(serializers.HyperlinkedModelSerializer):
@@ -13,13 +13,13 @@ class SocialNetworkSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = SocialNetwork
-        fields = ['url', 'entity', 'is_default', 'network_type', 'url', 'icon_url', 'posts']
+        fields = ['id', 'url', 'entity', 'is_default', 'network_type', 'url', 'icon_url', 'posts']
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
-        fields = ['slug', 'name']
+        fields = ['id', 'slug', 'name']
 
 
 class EntitySerializer(serializers.HyperlinkedModelSerializer):
@@ -28,5 +28,5 @@ class EntitySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Entity
-        fields = ['url', 'name', 'categories', 'image_url', 'description', 'email', 'networks']
+        fields = ['id', 'url', 'name', 'categories', 'image_url', 'description', 'email', 'web', 'networks']
 

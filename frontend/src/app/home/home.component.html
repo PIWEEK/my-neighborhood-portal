@@ -13,7 +13,7 @@
   <ul class="tabs">
     <li class="tab col s3">
       <a routerLink="/inicio/muro"
-         routerLinkActive="active">
+        routerLinkActive="active">
         Muro
       </a>
     </li>
@@ -78,7 +78,9 @@
           *ngFor="let entity of selectedEntities">
           <img src="{{ entity.imageUrl }}" alt="" class="circle">
           <div class="title">
-            {{ entity.name }}
+            <a [routerLink]="['/ficha', entity.id]">
+              {{ entity.name }}
+            </a>
             <span class="badge"
               *ngFor="let category of entity.categories">
               {{ category.name }}

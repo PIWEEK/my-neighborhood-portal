@@ -5,6 +5,7 @@ class Entity(models.Model):
     image_url = models.URLField()
     description = models.TextField()
     email = models.EmailField()
+    web = models.URLField()
     categories = models.ManyToManyField("category")
 
     class Meta:
@@ -83,7 +84,7 @@ class SocialPost(models.Model):
     class Meta:
         verbose_name = "social post"
         verbose_name_plural = "social posts"
-        ordering = ["network_id", "date"]
+        ordering = ["network_id", "-date"]
 
     def __str__(self):
         return '%s - %s [%s]' % (self.network.entity.name, self.network.network_type, self.date)
