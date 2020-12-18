@@ -76,20 +76,20 @@
           *ngIf="selectedEntities && selectedEntities.length > 0">
         <li class="collection-item avatar"
           *ngFor="let entity of selectedEntities">
-          <img src="{{ entity.imageUrl }}" alt="" class="circle">
-          <div class="title">
-            <a [routerLink]="['/ficha', entity.id]">
+          <a [routerLink]="['/ficha', entity.id]">
+            <img src="{{ entity.imageUrl }}" alt="" class="circle">
+            <div class="title">
               {{ entity.name }}
-            </a>
-            <span class="badge"
-              *ngFor="let category of entity.categories">
-              {{ category.name }}
-            </span>
-          </div>
-          <p>{{ entity.description }}</p>
-          <div class="secondary-content favorite">
-            <a><i class="material-icons">grade</i></a>
-          </div>
+              <span class="badge"
+                *ngFor="let category of entity.categories">
+                {{ category.name }}
+              </span>
+            </div>
+            <p>{{ entity.description }}</p>
+            <div class="secondary-content favorite">
+              <a><i class="material-icons">grade</i></a>
+            </div>
+          </a>
         </li>
       </ul>
       <p *ngIf="!selectedEntities || selectedEntities.length === 0">
