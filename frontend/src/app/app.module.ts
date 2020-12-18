@@ -11,8 +11,9 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 import { EntityComponent } from './entity/entity.component';
-import { PlanComponent } from './plan/plan.component';
+import { NeighborhoodComponent } from './neighborhood/neighborhood.component';
 import { CouncilComponent } from './council/council.component';
+import { PlanComponent } from './plan/plan.component';
 import { SocialCardComponent } from './social-card/social-card.component';
 import { StripHtmlPipe } from './strip-html.pipe';
 
@@ -24,12 +25,13 @@ registerLocaleData(localeEs, 'es');
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    PlanComponent,
-    CouncilComponent,
     SocialCardComponent,
     StripHtmlPipe,
     FilterPanelComponent,
-    EntityComponent
+    EntityComponent,
+    NeighborhoodComponent,
+    CouncilComponent,
+    PlanComponent,
   ],
   imports: [
     BrowserModule,

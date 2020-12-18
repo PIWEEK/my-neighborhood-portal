@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { EntityComponent } from './entity/entity.component';
-import { PlanComponent } from './plan/plan.component';
+import { NeighborhoodComponent } from './neighborhood/neighborhood.component';
 import { CouncilComponent } from './council/council.component';
+import { PlanComponent } from './plan/plan.component';
 
 const routes: Routes = [
   {
@@ -46,13 +47,27 @@ const routes: Routes = [
     component: EntityComponent
   },
   {
-    path: "plan",
-    component: PlanComponent
-  },
-  {
-    path: "consejo",
-    component: CouncilComponent
-  },
+    path: "pagina",
+    children: [
+      {
+        path: "",
+        pathMatch: "full",
+        redirectTo: "/pagina/barrio",
+      },
+      {
+        path: "barrio",
+        component: NeighborhoodComponent
+      },
+      {
+        path: "consejo",
+        component: CouncilComponent
+      },
+      {
+        path: "plan",
+        component: PlanComponent
+      },
+    ],
+  }
 ];
 
 @NgModule({

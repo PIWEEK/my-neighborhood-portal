@@ -1,0 +1,21 @@
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.decorative-image-big {
+  max-width: 800px;
+}
+
+.decorative-image {
+  max-width: 400px;
+  margin-bottom: 1rem;
+
+  &.right {
+    margin-left: 1rem;
+  }
+
+  &.left {
+    margin-right: 1rem;
+  }
+}
