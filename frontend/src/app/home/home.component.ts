@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   public activeTab?: string;
   public filterOpen = false;
   public filterLabel$?: Observable<string>;
+  public addPanelOpen = false;
 
   constructor(
     public directory: DirectoryService,
@@ -55,6 +56,14 @@ export class HomeComponent implements OnInit {
 
   public toggleFilter() {
     this.filterOpen = !this.filterOpen;
+  }
+
+  public openAddPanel() {
+    this.addPanelOpen = true;
+  }
+
+  public closeAddPanel() {
+    this.addPanelOpen = false;
   }
 
 }

@@ -44,3 +44,22 @@
     top: 9px;
   }
 }
+
+.modal-overlay {
+  z-index: 1002;
+  display: block;
+  opacity: 0.5;
+}
+
+.modal.open {
+  display: block;
+  opacity: 1;
+  top: 10%;
+  transform: scaleX(1) scaleY(1);
+  z-index: 1003;
+}
+
+.warning {
+  padding: 1rem;
+  text-align: center;
+}

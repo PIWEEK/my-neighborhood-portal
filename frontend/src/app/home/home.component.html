@@ -1,4 +1,6 @@
-<app-header></app-header>
+<app-header
+  (newEntityEvent)="openAddPanel()">
+</app-header>
 <div class="container">
   <div class="filter-status">
     <div class="filter-summary"
@@ -109,6 +111,52 @@
     <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1dlXsMgTGktO12WMxnHpov0FNR4zmLRvV"
       width="100%" height="800">
     </iframe>
+  </div>
+
+  <div class="fixed-action-btn hide-on-med-and-down">
+    <a class="btn-floating btn-large red"
+      (click)="openAddPanel()">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+
+  <div class="modal-overlay"
+    *ngIf="addPanelOpen"
+    (click)="closeAddPanel()">
+  </div>
+
+  <div id="modal-add" class="modal"
+    [class.open]="addPanelOpen">
+    <div class="modal-content">
+      <h4>Añade tu entidad</h4>
+      <p>¿Formas parte de un colectivo del barrio? Puedes rellenar un formulario
+      con tus datos, y lo daremos de alta en esta web, para que todo el mundo os
+      conozca y pueda seguir vuestras redes sociales.</p>
+      <p>Necesitarás:</p>
+      <ul class="browser-default">
+        <li>Un email de contacto (es importante porque para cambios tendréis que
+          escribirnos desde esta dirección).</li>
+        <li>Una foto en tamaño mediano del logotipo o alguna actividad.</li>
+        <li>La dirección de vuestra página web principal.</li>
+        <li>La dirección o el @nombre de vuestro blog o redes sociales.</li>
+        <li><strong>Importante</strong>: para hacer el alta te tendrás que
+          logar en una cuenta que tenga permisos de administración de las redes
+          sociales, para poder dar los permisos para visualizar los datos aquí.</li>
+      </ul>
+      <p class="warning indigo lighten-4">
+        Lo sentimos, la aplicación está aún en pruebas y no están habilitadas
+        las altas.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat"
+        (click)="closeAddPanel()">
+        Cancelar
+      </a>
+      <a class="modal-close waves-effect waves-green btn-flat disabled">
+        Adelante
+      </a>
+    </div>
   </div>
 
 </div>
