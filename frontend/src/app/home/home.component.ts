@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EntitiesService } from '../data/entities.service';
+import { DirectoryService } from '../data/directory.service';
 import { WallItem } from '../data/types';
 
 @Component({
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public filterLabel$?: Observable<string>;
 
   constructor(
-    public entities: EntitiesService,
+    public directory: DirectoryService,
     private route: ActivatedRoute,
   ) { }
 
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     this.route.data.subscribe((data) => {
       this.activeTab = data.activeTab;
     });
-    this.entities.mainWall$.subscribe(
+    this.directory.mainWall$.subscribe(
       (mainWall) => {
         let column = 0;
         this.columns = [[], [], []];
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    this.filterLabel$ = this.entities.allCategories$.pipe(
+    this.filterLabel$ = this.directory.allCategories$.pipe(
       map((categories) => {
         const selectedNames = categories
           .filter((category) => category.selected)

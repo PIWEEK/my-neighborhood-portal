@@ -69,7 +69,7 @@
 
   <div class="row" *ngIf="activeTab === 'list'">
     <div class="col s12 l10 offset-l1"
-      *alias="entities.selectedEntities$ | async as selectedEntities">
+      *alias="directory.selectedEntities$ | async as selectedEntities">
       <!-- See https://github.com/angular/angular/issues/15280
            and https://www.npmjs.com/package/ngx-alias -->
       <ul class="collection"

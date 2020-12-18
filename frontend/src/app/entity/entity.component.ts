@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable, ReplaySubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EntitiesService } from '../data/entities.service';
+import { DirectoryService } from '../data/directory.service';
 import { Entity, SocialNetwork, WallItem } from '../data/types';
 
 @Component({
@@ -18,14 +18,14 @@ export class EntityComponent implements OnInit {
   public currentWall$ = new ReplaySubject<WallItem[]>(1);
 
   constructor(
-    public entities: EntitiesService,
+    public directory: DirectoryService,
     private route: ActivatedRoute,
     private location: Location,
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.entity$ = this.entities.getEntity$(params.id);
+      this.entity$ = this.directory.getEntity$(params.id);
 
       this.entity$.subscribe((entity) => {
         if (entity) {
@@ -56,7 +56,7 @@ export class EntityComponent implements OnInit {
   }
 
   public typeIcon(network: SocialNetwork) {
-    return this.entities.networkTypeIcon(network);
+    return this.directory.networkTypeIcon(network);
   }
 
   public changeNetwork(network: SocialNetwork) {

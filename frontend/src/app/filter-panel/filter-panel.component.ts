@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EntitiesService } from '../data/entities.service';
+import { DirectoryService } from '../data/directory.service';
 import { Category } from '../data/types';
 
 @Component({
@@ -9,7 +9,7 @@ import { Category } from '../data/types';
 })
 export class FilterPanelComponent implements OnInit {
 
-  constructor(public entities: EntitiesService) { }
+  constructor(public directory: DirectoryService) { }
 
   ngOnInit(): void {
   }
@@ -23,15 +23,15 @@ export class FilterPanelComponent implements OnInit {
   }
 
   public toggleCategory(category: Category) {
-    this.entities.toggleCategory(category.slug);
+    this.directory.toggleCategory(category.slug);
   }
 
   public selectAllCategories() {
-    this.entities.selectAllCategories();
+    this.directory.selectAllCategories();
   }
 
   public deselectAllCategories() {
-    this.entities.deselectAllCategories();
+    this.directory.deselectAllCategories();
   }
 
 }

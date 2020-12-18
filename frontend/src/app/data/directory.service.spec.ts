@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CollectivesService } from './collectives.service';
+import { DirectoryService } from './directory.service';
 
-describe('CollectivesService', () => {
-  let service: CollectivesService;
+describe('DirectoryService', () => {
+  let service: DirectoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CollectivesService);
+    service = TestBed.inject(DirectoryService);
   });
 
   it('should be created', () => {

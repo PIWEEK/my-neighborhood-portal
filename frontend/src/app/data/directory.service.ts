@@ -7,7 +7,7 @@ import { Entity, Category, SocialNetwork, SocialPost, WallItem } from './types';
 @Injectable({
   providedIn: 'root'
 })
-export class EntitiesService {
+export class DirectoryService {
 
   public allEntities$: Observable<Entity[]>;
   public selectedEntities$ = new ReplaySubject<Entity[]>(1);

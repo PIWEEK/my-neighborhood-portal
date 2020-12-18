@@ -1,5 +1,5 @@
 <div class="card-panel indigo lighten-3">
-  <a *ngFor="let category of entities.allCategories$ | async"
+  <a *ngFor="let category of directory.allCategories$ | async"
      [class]="buttonClass(category)"
      (click)="toggleCategory(category)">
     {{ category.name }}
